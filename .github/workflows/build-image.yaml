@@ -37,6 +37,7 @@ on:
         description: 'Password to connect to registry'
         required: true
 
+
 jobs:
   docker-image-build-pull-request:
     runs-on: ubuntu-22.04-bantha
