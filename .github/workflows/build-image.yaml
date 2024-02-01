@@ -36,6 +36,7 @@ on:
       password:
         description: 'Password to connect to registry'
         required: true
+        
 
 jobs:
   docker-image-build-pull-request:
