@@ -1,0 +1,32 @@
+name: 'gitea action lint'
+
+# uses: reviewdog/action-actionlint@v1
+# > no project was found in any parent directories of ".". check workflows directory is put correctly in your Git repository
+# https://gitea.obmondo.com/Obmondo/gitea-actions/actions/runs/5
+
+# uses: raven-actions/actionlint@v1
+# > ::error::Unhandled error: HttpError: Bad credentials
+# https://gitea.obmondo.com/Obmondo/gitea-actions/actions/runs/1
+
+on:
+  pull_request:
+    paths:
+      - '.gitea/workflows/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+
+      - name: Setup actionlint
+        run: go install github.com/rhysd/actionlint/cmd/actionlint@latest
+
+      - name: Action lint
+        run: actionlint .gitea/workflows/**
