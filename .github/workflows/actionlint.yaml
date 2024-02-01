@@ -11,7 +11,7 @@ name: 'gitea action lint'
 on:
   pull_request:
     paths:
-      - '.gitea/workflows/**'
+      - '.github/workflows/**'
 
 jobs:
   lint:
