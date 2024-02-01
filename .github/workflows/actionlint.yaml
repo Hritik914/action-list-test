@@ -9,7 +9,7 @@ name: 'gitea action lint'
 # https://gitea.obmondo.com/Obmondo/gitea-actions/actions/runs/1
 
 on:
-  pull_request:
+  push:
     paths:
       - '.github/workflows/**'
 
