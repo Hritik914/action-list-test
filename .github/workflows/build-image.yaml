@@ -1,0 +1,46 @@
+name: 'build-package'
+
+on:
+  workflow_call:
+    inputs:
+      context:
+        description: 'path to find the source file to build package'
+        required: true
+        type: string
+      image_name:
+        description: 'name of image to be build'
+        required: true
+        type: string
+      registry:
+        description: 'Image registry to push images'
+        default: 'harbor.kkb.com'
+        type: string
+        required: false
+      tags:
+        description: 'Image tags to push to registry'
+        required: true
+        type: string
+      push:
+        description: 'Image should be pushed or not'
+        type: boolean
+        default: true
+        required: false
+      build-arg:
+        description: 'Additional build arguments'
+        required: false
+        type: string
+    secrets:
+      username:
+        description: 'Username to connect to registry'
+        required: true
+      password:
+        description: 'Password to connect to registry'
+        required: true
+
+jobs:
+  docker-image-build-pull-request:
+    runs-on: ubuntu-22.04-bantha
+    steps:
+
+    - name: Checkout Code
+      uses: actions/checkout@v3
